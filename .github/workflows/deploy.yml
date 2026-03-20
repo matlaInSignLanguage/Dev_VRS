@@ -26,8 +26,14 @@ jobs:
               --name VideoRelayServices \
               --resource-group InSignVRS \
               --settings \
+                SEO_DESCRIPTION="${{ secrets.SEO_DESCRIPTION }}" \
+                SEO_KEYWORD="${{ secrets.SEO_KEYWORD }}" \
+                GOOGLE_TAG="${{ secrets.GOOGLE_TAG }}" \
+                CLARITY_TAG="${{ secrets.CLARITY_TAG }}" \
                 HOME_TITLE="${{ secrets.HOME_TITLE }}" \
                 HOME_PARAGRAPH="${{ secrets.HOME_PARAGRAPH }}" \
+                BOOK_TITLE="${{ secrets.BOOK_TITLE }}" \
+                BOOK_LINK="${{ secrets.BOOK_LINK }}" \
                 NODE_ENV=production
 
       - name: Deploy to Azure
