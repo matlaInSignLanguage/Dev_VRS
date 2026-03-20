@@ -1,13 +1,81 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InSign Video Relay Service</title>
-  </head>
-  <body>
-    <h1>InSign Video Relay Service</h1>
-    <p>The backend is running on Azure.</p>
-    <p>If you’re seeing this, the / route is working.</p>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | InSignLanguage</title>
+  <meta name="description"
+    content="Book a video relay service appointment with InSignLanguage. Fast and easy online scheduling.">
+  <meta name="keywords" content="VRS, sign language interpreter, video relay service, booking interpreter">
+  <meta name="author" content="InSignLanguage">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="Book a Sign Language Appointment">
+  <meta property="og:description"
+    content="Book a Video Relay Service (VRS) appointment with InSignLanguage. Deaf BSL users can schedule advance slots with qualified British Sign Language interpreters for accessible phone and video calls. ">
+  <meta property="og:type" content="website">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BML8Y7794N"></script>
+  <script> window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-BML8Y7794N'); </script>
+
+  <!-- Clarity tag -->
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i; y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "u544aaafvy"); </script>
+
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="/images/logo192.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body class="app">
+
+ <header class="app-header">
+  <div class="brand">
+    <img src="images/ms-icon-150x150.png"
+         alt="InSignLanuage_logo"
+         class="brand-logo" />
+
+    <span class="brand-name">InSignLanguage</span>
+  </div>
+</header>
+  <div class=" app-shell">
+        <aside class="app-sidebar">
+          <nav>
+            <a class="nav-item" href="index.html">Home</a>
+            <a class="nav-item" href="book.html">Book</a>
+          </nav>
+        </aside>
+
+        <main class="app-main">
+          <div class="content-body">
+            <h1 id="home_title">Welcome</h1>
+            
+            <p id="home_paragraph">No informatio are display</p>
+          </div>
+
+          <footer class="app-footer">
+            © 2026 InSignLanuage
+          </footer>
+        </main>
+    </div>
+ <!-- Fetch environment variables from Node API -->
+  <script>
+    fetch("/api/message")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("home_title").innerText = data.home_title;
+        document.getElementById("home_paragraph").innerText = data.home_paragraph;
+      })
+      .catch(err => {
+        document.getElementById("home_title").innerText = "Error loading message";
+        document.getElementById("home_paragraph").innerText = "Error loading message";
+      });
+  </script>
+</body>
 </html>
