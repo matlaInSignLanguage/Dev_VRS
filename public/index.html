@@ -48,6 +48,9 @@
             <h1 id="home_title">Welcome</h1>
             
             <p id="home_paragraph">No informatio are display</p>
+            <button onclick="openBooking()">Book Now</button>
+
+
           </div>
 
             <footer class="app-footer">
@@ -60,5 +63,13 @@
     </div>
  <!-- Fetch environment variables from Node API -->
  <script src="environment_variables.js"></script>
+ <script>
+function openBooking() {
+  window.open(
+    "https://outlook.office.com/book/VRSScheduler@insignlanguage.co.uk/?ismsaljsauthenabled",
+    "_blank"
+  );
+}
+</script>
 </body>
 </html>
