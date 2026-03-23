@@ -9,8 +9,10 @@ fetch("/api/message")
     if (desc) desc.setAttribute("content", data.seo_description || "");
     if (key) key.setAttribute("content", data.seo_keyword || "");
 
-    // Google Analytics
-    if (data.google_tag && !document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+    // Prevent duplicate analytics
+    const gtagLoaded = document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
+
+    if (data.google_tag && !gtagLoaded) {
       const gtagScript = document.createElement("script");
       gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${data.google_tag}`;
       gtagScript.async = true;
@@ -20,6 +22,7 @@ fetch("/api/message")
       gtagConfig.innerHTML = `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
         gtag('js', new Date());
         gtag('config', '${data.google_tag}');
       `;
@@ -27,7 +30,9 @@ fetch("/api/message")
     }
 
     // Clarity
-    if (data.clarity_tag && !document.querySelector('script[src*="clarity.ms/tag"]')) {
+    const clarityLoaded = document.querySelector('script[src*="clarity.ms/tag"]');
+
+    if (data.clarity_tag && !clarityLoaded) {
       const clarityScript = document.createElement("script");
       clarityScript.innerHTML = `
         (function(c,l,a,r,i,t,y){
@@ -46,12 +51,12 @@ fetch("/api/message")
     if (homeTitle) homeTitle.innerText = data.home_title || "";
     if (homePara) homePara.innerText = data.home_paragraph || "";
 
-    // Book
-    const bookTitle = document.getElementById("book_title");
+    // Book iframe
     const iframe = document.getElementById("book_link");
 
-    if (bookTitle) bookTitle.innerText = data.book_title || "";
-    if (iframe && data.book_link) iframe.src = data.book_link;
+    if (iframe && data.book_link) {
+      iframe.src = data.book_link;
+    }
 
   })
   .catch(err => {
