@@ -1,30 +1,59 @@
-    fetch("/api/message")
-      .then(res => res.json())
-      .then(data => {
-        // Head enviroment variables
-        document.getElementById("seo_description").innerText = data.seo_description;
-        document.getElementById("seo_keyword").innerText = data.seo_keyword;
-        document.getElementById("google_tag").innerText = data.google_tag;
-        document.getElementById("clarity_tag").innerText = data.clarity_tag;
+fetch("/api/message")
+  .then(res => res.json())
+  .then(data => {
 
-        // Home page
-        document.getElementById("home_title").innerText = data.home_title;
-        document.getElementById("home_paragraph").innerText = data.home_paragraph;
-        // Book page
-        document.getElementById("book_title").innerText = data.book_title;
-        document.getElementById("book_link").innerText = data.book_link;
+    // SEO
+    const desc = document.getElementById("seo_description");
+    const key = document.getElementById("seo_keyword");
 
-      })
-      .catch(err => {
-        // Head enviroment variables
-        document.getElementById("seo_description").innerText = "Error: loading message";
-        document.getElementById("seo_keyword").innerText = "Error: loading message";
-        document.getElementById("google_tag").innerText = "Error: loading message";
-        document.getElementById("clarity_tag").innerText = "Error: loading message";
-        // Home page
-        document.getElementById("home_title").innerText = "Error: loading message";
-        document.getElementById("home_paragraph").innerText = "Error: loading message";
-        // Book page
-        document.getElementById("book_title").innerText = "Error: loading message";
-        document.getElementById("book_link").innerText = "Error: link not found";
-      });
+    if (desc) desc.setAttribute("content", data.seo_description || "");
+    if (key) key.setAttribute("content", data.seo_keyword || "");
+
+    // Google Analytics
+    if (data.google_tag && !window.gtag) {
+      const gtagScript = document.createElement("script");
+      gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${data.google_tag}`;
+      gtagScript.async = true;
+      document.head.appendChild(gtagScript);
+
+      const gtagConfig = document.createElement("script");
+      gtagConfig.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${data.google_tag}');
+      `;
+      document.head.appendChild(gtagConfig);
+    }
+
+    // Clarity
+    if (data.clarity_tag && !window.clarity) {
+      const clarityScript = document.createElement("script");
+      clarityScript.innerHTML = `
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "${data.clarity_tag}");
+      `;
+      document.head.appendChild(clarityScript);
+    }
+
+    // Home
+    const homeTitle = document.getElementById("home_title");
+    const homePara = document.getElementById("home_paragraph");
+
+    if (homeTitle) homeTitle.innerText = data.home_title || "";
+    if (homePara) homePara.innerText = data.home_paragraph || "";
+
+    // Book
+    const bookTitle = document.getElementById("book_title");
+    const iframe = document.getElementById("book_link");
+
+    if (bookTitle) bookTitle.innerText = data.book_title || "";
+    if (iframe && data.book_link) iframe.src = data.book_link;
+
+  })
+  .catch(() => {
+    console.error("Failed to load API data");
+  });

@@ -4,66 +4,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VRS book appointment | InSignLanguage</title>
-  <meta name="description" id="seo_description">
-  <meta name="keywords" id="seo_keyword">
 
-  <!-- Open Graph (for social sharing) -->
+  <title>VRS book appointment | InSignLanguage</title>
+
+  <meta name="description" id="seo_description" content="">
+  <meta name="keywords" id="seo_keyword" content="">
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Book a Sign Language Appointment">
   <meta property="og:description"
-    content="Book a Video Relay Service (VRS) appointment with InSignLanguage. Deaf BSL users can schedule advance slots with qualified British Sign Language interpreters for accessible phone and video calls. ">
+    content="Book a Video Relay Service (VRS) appointment with InSignLanguage. Deaf BSL users can schedule advance slots with qualified interpreters.">
   <meta property="og:type" content="website">
-
-  <!-- Google tag (gtag.js) -->
-  <script id="google_tag"></script>
-  <!-- Clarity tag -->
-  <script id="clarity_tag"></script>
 
   <link rel="icon" href="/images/favicon.ico" />
   <link rel="apple-touch-icon" href="/images/logo192.png" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 
-<body class="app">
+<body class="app" onload="loadLayout()">
 
- <header class="app-header">
-  <div class="brand">
-    <img src="images/ms-icon-150x150.png"
-         alt="InSignLanuage_logo"
-         class="brand-logo" />
+  <div id="header"></div>
 
-    <span class="brand-name">InSignLanguage</span>
-  </div>
-</header>
-  <div class=" app-shell">
-        <aside class="app-sidebar">
-          <nav>
-            <a class="nav-item" href="index.html">Home</a>
-            <a class="nav-item" href="book.html">Book</a>
-          </nav>
-        </aside>
-
-        <main class="app-main">
+  <div class="app-shell">
+    <div id="sidebar"></div>
           <div class="content-body">
             <h1 id="book_title">Welcome</h1>
             
-                <iframe id="book_link" width="100%" height="600"></iframe>
-                <iframe 
-  src="https://outlook.office.com/book/VRSScheduler@insignlanguage.co.uk/?ismsaljsauthenabled"
-  width="100%" 
-  height="600">
-</iframe>
+            <iframe id="book_link" width="100%" height="600" style="border:none;"></iframe>
           </div>
-
-            <footer class="app-footer">
-            © 2017 - <span id="year"></span> InSignLanguage
-            <script>
-              document.getElementById('year').textContent = new Date().getFullYear();
-            </script>
-            </footer>
         </main>
     </div>
- <!-- Fetch environment variables from Node API -->
  <script src="environment_variables.js"></script>
+  <script src="layout.js"></script>
 </body>
 </html>
