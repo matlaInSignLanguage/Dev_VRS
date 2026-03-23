@@ -1,59 +1,60 @@
-fetch("/api/message")
-  .then(res => res.json())
-  .then(data => {
+app.get("/environment_variables.js", (req, res) => {
+  res.setHeader("Content-Type", "application/javascript");
 
-    // SEO
-    const desc = document.getElementById("seo_description");
-    const key = document.getElementById("seo_keyword");
+  res.send(`
+    fetch("/api/message")
+      .then(res => res.json())
+      .then(data => {
 
-    if (desc) desc.setAttribute("content", data.seo_description || "");
-    if (key) key.setAttribute("content", data.seo_keyword || "");
+        // SEO
+        const desc = document.getElementById("seo_description");
+        const key = document.getElementById("seo_keyword");
 
-    // Google Analytics
-    if (data.google_tag && !window.gtag) {
-      const gtagScript = document.createElement("script");
-      gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${data.google_tag}`;
-      gtagScript.async = true;
-      document.head.appendChild(gtagScript);
+        if (desc) desc.setAttribute("content", data.seo_description || "");
+        if (key) key.setAttribute("content", data.seo_keyword || "");
 
-      const gtagConfig = document.createElement("script");
-      gtagConfig.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${data.google_tag}');
-      `;
-      document.head.appendChild(gtagConfig);
-    }
+        // Home
+        const homeTitle = document.getElementById("home_title");
+        const homePara = document.getElementById("home_paragraph");
 
-    // Clarity
-    if (data.clarity_tag && !window.clarity) {
-      const clarityScript = document.createElement("script");
-      clarityScript.innerHTML = `
-        (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "${data.clarity_tag}");
-      `;
-      document.head.appendChild(clarityScript);
-    }
+        if (homeTitle) homeTitle.innerText = data.home_title || "";
+        if (homePara) homePara.innerText = data.home_paragraph || "";
 
-    // Home
-    const homeTitle = document.getElementById("home_title");
-    const homePara = document.getElementById("home_paragraph");
+        // Book iframe
+        const iframe = document.getElementById("book_link");
+        if (iframe && data.book_link) iframe.src = data.book_link;
 
-    if (homeTitle) homeTitle.innerText = data.home_title || "";
-    if (homePara) homePara.innerText = data.home_paragraph || "";
+        // Google Tag
+        if (data.google_tag && !document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+          const gtagScript = document.createElement("script");
+          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=" + data.google_tag;
+          gtagScript.async = true;
+          document.head.appendChild(gtagScript);
 
-    // Book
-    const bookTitle = document.getElementById("book_title");
-    const iframe = document.getElementById("book_link");
+          const gtagConfig = document.createElement("script");
+          gtagConfig.innerHTML = \`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '\${data.google_tag}');
+          \`;
+          document.head.appendChild(gtagConfig);
+        }
 
-    if (bookTitle) bookTitle.innerText = data.book_title || "";
-    if (iframe && data.book_link) iframe.src = data.book_link;
+        // Clarity
+        if (data.clarity_tag && !document.querySelector('script[src*="clarity.ms/tag"]')) {
+          const clarityScript = document.createElement("script");
+          clarityScript.innerHTML = \`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "\${data.clarity_tag}");
+          \`;
+          document.head.appendChild(clarityScript);
+        }
 
-  })
-  .catch(() => {
-    console.error("Failed to load API data");
-  });
+      })
+      .catch(err => console.error("Env load failed:", err));
+  `);
+});
