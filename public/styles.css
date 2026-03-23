@@ -1,7 +1,10 @@
 * { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
+
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+  overflow: hidden;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: #f6f7fb;
   color: #111827;
@@ -21,6 +24,7 @@ body {
   --header-h: 60px;
 }
 
+/* HEADER */
 .app-header {
   background-color: #FBB000 !important;
   height: var(--header-h);
@@ -28,7 +32,6 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background: var(--panel);
   border-bottom: 1px solid var(--border);
 }
 
@@ -43,25 +46,23 @@ body {
 .brand-logo {
   height: 36px;
   width: auto;
-  display: block;
 }
 
-.brand-name {
-  white-space: nowrap;
-}
-
-
+/* LAYOUT */
 .app-shell {
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
-  min-height: calc(100vh - var(--header-h));
+  height: calc(100vh - var(--header-h));
+  overflow: hidden;
 }
 
+/* SIDEBAR */
 .app-sidebar {
   margin-top: 20px;
   background: var(--panel);
   border-right: 1px solid var(--border);
   padding: 14px;
+  overflow-y: auto;
 }
 
 .nav-item {
@@ -69,35 +70,55 @@ body {
   padding: 10px 12px;
   border-radius: 8px;
   color: var(--fg);
+  text-decoration: none;
 }
 
 .nav-item:hover {
   background: var(--panel-2);
 }
 
+/* MAIN CONTENT */
 .app-main {
   padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
+/* CONTENT BOX */
 .content-body {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
+/* IFRAME */
+#book_link {
+  width: 100%;
+  flex: 1;           
+  min-height: 600px;
+  border: none;
+}
+
+/* FOOTER */
 .app-footer {
   margin-top: 12px;
   color: var(--muted);
   font-size: 13px;
 }
 
-  #book_link {
-    width: 100%;
-    height: 100vh;
-    border: none;
+/* MOBILE */
+@media (max-width: 860px) {
+  .app-shell {
+    grid-template-columns: 1fr;
   }
 
-@media (max-width: 860px) {
-  .app-shell { grid-template-columns: 1fr; }
+  .app-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
 }
