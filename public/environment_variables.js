@@ -52,11 +52,17 @@ fetch("/api/message")
     if (homePara) homePara.innerText = data.home_paragraph || "";
 
     // Book iframe
+    const bookTitle = document.getElementById("book_title");
     const iframe = document.getElementById("book_link");
 
-    if (iframe && data.book_link) {
-      iframe.src = data.book_link;
-    }
+if (iframe && data.book_link) {
+  iframe.src = data.book_link;
+
+  iframe.onerror = () => {
+    console.warn("Iframe blocked. Falling back to link.");
+  };
+}
+if (bookTitle) bookTitle.innerHTML = data.book_title || "";
 
   })
   .catch(err => {
