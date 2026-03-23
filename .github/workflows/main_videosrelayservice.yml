@@ -1,0 +1,48 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - videosrelayservice
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Docker login to container registry
+        uses: docker/login-action@v2
+        with:
+          registry: mcr.microsoft.com/
+          username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_14A55D44A26940F091A01684FBCC25DA }}
+          password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_11ACB24C85CC43A1929A7466FDC6B25E }}
+          
+
+      - name: Build and Push container to registry
+        run: |
+          docker build -t mcr.microsoft.com/azure-app-service/windows/parkingpage:${{ github.sha }} .
+          docker push mcr.microsoft.com/azure-app-service/windows/parkingpage:${{ github.sha }}
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_959D8A5A0C1C46E1B664B3DFCAC80FB4 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2D73DA791F0844AAB2EE2CAA1536F870 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2EDD69A577714C62BC083C8389B637BD }}
+
+      - name: Deploy container to Azure App Service
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: 'videosrelayservice'
+          slot-name: 'Production'
+          images: 'mcr.microsoft.com/azure-app-service/windows/parkingpage:${{ github.sha }}'
+          
