@@ -211,7 +211,68 @@ p {
 .nav-item:hover {
   text-decoration: underline;
 }
+.vrs-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
+/* Card styling */
+.vrs-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vrs-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+}
+
+/* Headings */
+.vrs-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: #111827;
+}
+
+/* Lists */
+.vrs-card ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.vrs-card li {
+  margin-bottom: 8px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Links */
+.vrs-card a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.vrs-card a:hover {
+  text-decoration: underline;
+}
+
+/* Footer note */
+.vrs-footer {
+  text-align: center;
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
 /* =========================
    Mobile Navigation
    ========================= */
