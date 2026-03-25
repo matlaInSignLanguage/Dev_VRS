@@ -44,7 +44,7 @@ body {
 /* Main area */
 .app-main {
   flex: 1;
-  padding: 24px 16px 80px;
+  padding: 24px 16px;
   background: #eef2f6;
 }
 
@@ -301,6 +301,31 @@ p {
   }
 }
 
+/* Section improvement */
+.book-section {
+  max-width: 900px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+/* Card container */
+.iframe-card {
+  margin-top: 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  background: #fff;
+}
+
+/* Iframe styling */
+.iframe-card iframe {
+  width: 100%;
+  height: 75vh;
+  border: none;
+  display: block;
+}
+
 /* =========================
    Footer
    ========================= */
@@ -309,7 +334,15 @@ p {
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 1200;
+
+  border-top: 1px solid #e5e5e5;
+  padding: 14px 16px;
+  text-align: center;
+  background: #fff;
+  font-size: 0.95rem;
+  color: #6b7280;
+
+  z-index: 1000 ;
 }
 
 /* =========================
