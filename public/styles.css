@@ -7,10 +7,6 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 100%;
-}
-
 html, body {
   height: 100%;
 }
@@ -26,6 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* =========================
@@ -33,23 +30,24 @@ body {
    ========================= */
 .app-shell {
   display: flex;
-  min-height: calc(100vh - 60px);
+  flex: 1;
+  min-height: 0;
 }
 
 /* Sidebar */
 #sidebar {
   width: 240px;
+  flex-shrink: 0;
 }
 
 /* Main area */
 .app-main {
   flex: 1;
-  padding: 24px 16px;
-  background: #eef2f6;
+  padding: clamp(12px, 2vw, 24px);
 }
 
 /* =========================
-   Boxed Container
+   Containers
    ========================= */
 .page-box {
   max-width: 1200px;
@@ -57,30 +55,32 @@ body {
   background: #ffffff;
   border: 1px solid #e6e8eb;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  padding: 24px;
+  padding: clamp(16px, 3vw, 24px);
+  width: 100%;
 }
 
-/* Inner container */
 .main-container {
   max-width: 1100px;
   margin: 0 auto;
+  width: 100%;
 }
 
-/* Sections */
 .section {
   max-width: 600px;
   margin: 40px auto;
   text-align: center;
+  padding: 0 12px;
 }
 
-/* Typography */
-h1, h2, h3 {
-  margin-top: 0;
-  color: #111827;
-}
-
+/* =========================
+   Typography
+   ========================= */
 h1 {
-  font-size: 1.6rem;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+h2, h3 {
+  color: #111827;
 }
 
 p {
@@ -88,17 +88,15 @@ p {
 }
 
 /* =========================
-   Button Row (Centered)
+   Buttons
    ========================= */
 .button-row {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin: 16px 0;
   flex-wrap: wrap;
 }
 
-/* Buttons */
 .icon-button {
   display: inline-flex;
   align-items: center;
@@ -120,28 +118,27 @@ p {
 
 .icon-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-  background: #f9fafb;
 }
 
 /* =========================
-   Cards
+   Grid
    ========================= */
-.card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  border: 1px solid #e6e8eb;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-}
-
-/* Grid */
 .grid {
   display: grid;
   gap: 20px;
 }
 
-@media (min-width: 768px) {
+.grid-3 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
   .grid-3 {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -155,39 +152,24 @@ p {
   top: 0;
   z-index: 1000;
   background: #FBB000;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .header-inner {
-  background-color: #FBB000;
   max-width: 1200px;
   margin: 0 auto;
-  padding: clamp(12px, 2vw, 18px) clamp(14px, 3vw, 24px);
-
+  padding: clamp(10px, 2vw, 18px);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
 }
 
 .left-group {
   display: flex;
   align-items: center;
-  gap: clamp(12px, 2vw, 20px);
+  gap: 16px;
   flex-wrap: wrap;
   width: 100%;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: inherit;
-  text-decoration: none;
-}
-
-.brand-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
 }
 
 .brand-name {
@@ -196,87 +178,76 @@ p {
 }
 
 .top-nav {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .nav-item {
   font-weight: 600;
-  font-size: 1rem;
   color: #000;
   text-decoration: none;
 }
 
-.nav-item:hover {
-  text-decoration: underline;
+/* =========================
+   Cards
+   ========================= */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e6e8eb;
 }
+
+/* =========================
+   VRS Cards
+   ========================= */
 .vrs-container {
   max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 0 12px;
 }
 
-/* Card styling */
 .vrs-card {
   background: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 14px;
-  padding: 20px 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 20px;
 }
 
-.vrs-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+/* =========================
+   Iframe
+   ========================= */
+.iframe-card iframe {
+  width: 100%;
+  height: 60vh;
+  border: none;
 }
 
-/* Headings */
-.vrs-card h3 {
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 1.2rem;
-  color: #111827;
-}
-
-/* Lists */
-.vrs-card ul {
-  padding-left: 18px;
-  margin: 0;
-}
-
-.vrs-card li {
-  margin-bottom: 8px;
-  color: #4b5563;
-  line-height: 1.6;
-}
-
-/* Links */
-.vrs-card a {
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.vrs-card a:hover {
-  text-decoration: underline;
-}
-
-/* Footer note */
-.vrs-footer {
+/* =========================
+   Footer (FIXED → SAFE)
+   ========================= */
+.app-footer {
+  width: 100%;
+  border-top: 1px solid #e5e5e5;
+  padding: 14px 16px;
   text-align: center;
-  margin-top: 10px;
-  padding: 14px;
+  background: #fff;
   font-size: 0.95rem;
   color: #6b7280;
 }
+
 /* =========================
    Mobile Navigation
    ========================= */
 @media (max-width: 600px) {
+
+  #sidebar {
+    display: none;
+  }
 
   .top-nav {
     position: fixed;
@@ -284,70 +255,19 @@ p {
     left: 0;
     right: 0;
 
-    display: flex;
     justify-content: center;
-
-    padding: 12px 0;
+    padding: 10px 0;
 
     background: #FBB000;
     border-top: 1px solid #e5e5e5;
-    box-shadow: 0 -2px 8px rgba(0,0,0,.08);
     z-index: 1100;
   }
 
-  .nav-item {
-    font-weight: 700;
-    padding: 0 16px;
+  .app-main {
+    padding-bottom: 80px; /* prevent overlap with bottom nav */
   }
-}
 
-/* Section improvement */
-.book-section {
-  max-width: 900px;
-  margin: 40px auto;
-  text-align: center;
-}
-
-/* Card container */
-.iframe-card {
-  margin-top: 16px;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-  background: #fff;
-}
-
-/* Iframe styling */
-.iframe-card iframe {
-  width: 100%;
-  height: 75vh;
-  border: none;
-  display: block;
-}
-
-/* =========================
-   Footer
-   ========================= */
-.app-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-
-  border-top: 1px solid #e5e5e5;
-  padding: 14px 16px;
-  text-align: center;
-  background: #fff;
-  font-size: 0.95rem;
-  color: #6b7280;
-
-  z-index: 1000 ;
-}
-
-/* =========================
-   Sidebar Hidden
-   ========================= */
-.app-sidebar {
-  display: none !important;
+  .iframe-card iframe {
+    height: 50vh;
+  }
 }
