@@ -21,6 +21,24 @@ app.get("/api/message", (req, res) => {
     // Home page
     home_title: process.env.HOME_TITLE || "Welcome InSignLanguage",
     home_paragraph: process.env.HOME_PARAGRAPH || "No paragraph found",
+    // Buttion
+homeButtons: [
+  {
+    url: process.env.HOME_BUTTON_URL_1 || "index.html",
+    icon: process.env.HOME_BUTTON_ICON_1 || "🏠",
+    text: process.env.HOME_BUTTON_TEXT_1 || "Home"
+  },
+  {
+    url: process.env.HOME_BUTTON_URL_2 || "book.html",
+    icon: process.env.HOME_BUTTON_ICON_2 || "📆",
+    text: process.env.HOME_BUTTON_TEXT_2 || "Booking VRS"
+  },
+  {
+    url: process.env.HOME_BUTTON_URL_3 || "vrs.html",
+    icon: process.env.HOME_BUTTON_ICON_3 || "🎥",
+    text: process.env.HOME_BUTTON_TEXT_3 || "VRS"
+  }
+],
 
     // Book page
     book_title: process.env.BOOK_TITLE || "Book Appointment",

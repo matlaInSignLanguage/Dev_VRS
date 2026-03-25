@@ -1,7 +1,8 @@
 fetch("/api/message")
-  .then(res => {
+  .then(async res => {
     if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
+      const text = await res.text();
+      throw new Error(`HTTP ${res.status}: ${text}`);
     }
     return res.json();
   })
@@ -15,7 +16,7 @@ fetch("/api/message")
     if (key) key.setAttribute("content", data.seo_keyword || "");
 
     // Google Tag
-    if (data.google_tag && !window.gtag) {
+    if (data.google_tag && !document.querySelector(`script[src*="${data.google_tag}"]`)) {
       const script = document.createElement("script");
       script.src = `https://www.googletagmanager.com/gtag/js?id=${data.google_tag}`;
       script.async = true;
@@ -34,12 +35,15 @@ fetch("/api/message")
 
     // Microsoft Clarity
     if (data.clarity_tag && !window.clarity) {
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;
-        t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t,y);
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () {
+          (c[a].q = c[a].q || []).push(arguments)
+        };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
       })(window, document, "clarity", "script", data.clarity_tag);
     }
 
@@ -50,19 +54,24 @@ fetch("/api/message")
     if (homeTitle) homeTitle.innerText = data.home_title || "";
     if (homePara) homePara.innerHTML = data.home_paragraph || "";
 
-    // Buttons (fixed mapping — NO string replace hacks)
-    for (let i = 1; i <= 3; i++) {
-      const urlEl = document.getElementById(`homeButtionUrl_${i}`);
-      const iconEl = document.getElementById(`homeButtionIcon_${i}`);
-      const textEl = document.getElementById(`homeButtionText_${i}`);
+    // Buttons (dynamic rendering)
+    const container = document.getElementById("homeButtons");
 
-      const urlKey = `homeButtionUrl_${i}`;
-      const iconKey = `homeButtionIcon_${i}`;
-      const textKey = `homeButtionText_${i}`;
+    if (container && Array.isArray(data.homeButtons)) {
+      container.innerHTML = "";
 
-      if (urlEl) urlEl.href = data[urlKey] || "#";
-      if (iconEl) iconEl.innerText = data[iconKey] || "";
-      if (textEl) textEl.innerText = data[textKey] || "";
+      data.homeButtons.forEach(btn => {
+        const el = document.createElement("a");
+        el.className = "icon-button";
+        el.href = btn.url || "#";
+
+        el.innerHTML = `
+          <span class="icon">${btn.icon || ""}</span>
+          <span class="text">${btn.text || ""}</span>
+        `;
+
+        container.appendChild(el);
+      });
     }
 
     // Book section
