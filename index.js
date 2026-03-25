@@ -21,6 +21,7 @@ app.get("/api/message", (req, res) => {
     // Home page
     home_title: process.env.HOME_TITLE || "Welcome InSignLanguage",
     home_paragraph: process.env.HOME_PARAGRAPH || "No paragraph found",
+    homeButtionUrl_1: process.env.HOME_BUTTIONURL_1 || "Button url 1",
     homeButtionUrl_2: process.env.HOME_BUTTIONURL_2 || "Button url 2",
     homeButtionUrl_3: process.env.HOME_BUTTIONURL_3 || "Button url 3",
 
