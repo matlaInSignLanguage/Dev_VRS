@@ -20,7 +20,7 @@ app.get("/api/message", (req, res) => {
 
     // Home page
     home_title: process.env.HOME_TITLE || "Welcome InSignLanguage",
-    home_paragraph: process.env.HOME_PARAGRAPH || "No paragraph found",
+    home_paragraph: process.env.HOME_PARAGRAPH || "",
     // Buttion
 homeButtons: [
   {
