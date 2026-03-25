@@ -48,8 +48,47 @@ fetch("/api/message")
     const homeTitle = document.getElementById("home_title");
     const homePara = document.getElementById("home_paragraph");
 
-    if (homeTitle) homeTitle.innerText = data.home_title || "";
-    if (homePara) homePara.innerText = data.home_paragraph || "";
+const mapKey = (key) => key.replace("homeButtion", "home_buttion");
+
+const count = 3;
+
+for (let i = 1; i <= count; i++) {
+  const urlEl = document.getElementById(`homeButtionUrl_${i}`);
+  const iconEl = document.getElementById(`homeButtionIcon_${i}`);
+  const textEl = document.getElementById(`homeButtionText_${i}`);
+
+  const urlKey = mapKey(`homeButtionUrl_${i}`);
+  const iconKey = mapKey(`homeButtionIcon_${i}`);
+  const textKey = mapKey(`homeButtionText_${i}`);
+
+  if (urlEl) urlEl.href = data?.[urlKey] || "";
+  if (iconEl) iconEl.innerText = data?.[iconKey] || "";
+  if (textEl) textEl.innerText = data?.[textKey] || "";
+}
+    // const homeButtionUrl_1 = document.getElementById("homeButtionUrl_1");
+    // const homeButtionUrl_2 = document.getElementById("homeButtionUrl_2");
+    // const homeButtionUrl_3 = document.getElementById("homeButtionUrl_3");   
+    // const homeButtionIcon_1 = document.getElementById("homeButtionIcon_1");
+    // const homeButtionIcon_2 = document.getElementById("homeButtionIcon_2");
+    // const homeButtionIcon_3 = document.getElementById("homeButtionIcon_3");    
+    // const homeButtionText_1 = document.getElementById("homeButtionText_1");
+    // const homeButtionText_2 = document.getElementById("homeButtionText_2");
+    // const homeButtionText_3 = document.getElementById("homeButtionText_3");
+
+    // if (homeTitle) homeTitle.innerText = data.home_title || "";
+    // if (homePara) homePara.innerText = data.home_paragraph || "";
+    // if (homeButtionUrl_1 && data.homeButtionUrl_1) 
+    //   homeButtionUrl_1.href = data.homeButtionUrl_1   || "";
+    // if (homeButtionUrl_2 && data.homeButtionUrl_2)  
+    //   homeButtionUrl_2.href = data.homeButtionUrl_2   || "";
+    // if (homeButtionUrl_3 && data.homeButtionUrl_3)  
+    //   homeButtionUrl_3.href = data.homeButtionUrl_3   || "";   
+    // if (homeButtionIcon_1) homeButtionIcon_1.innerText = data.homeButtionIcon_1 || "";
+    // if (homeButtionIcon_2) homeButtionIcon_2.innerText = data.homeButtionIcon_2 || "";
+    // if (homeButtionIcon_3) homeButtionIcon_3.innerText = data.homeButtionIcon_3 || ""; 
+    // if (homeButtionText_1) homeButtionText_1.innerText = data.homeButtionText_1 || "";
+    // if (homeButtionText_2) homeButtionText_2.innerText = data.homeButtionText_2 || "";
+    // if (homeButtionText_3) homeButtionText_3.innerText = data.homeButtionText_3 || "";
 
     // Book iframe
     const bookTitle = document.getElementById("book_title");

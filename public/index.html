@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,15 +26,66 @@
   <div id="header"></div>
 
   <div class="app-shell">
-    <div id="sidebar"></div>
- <main class="app-main">
-          <div class="content-body">
-            <h1 id="home_title">Welcome</h1>
-            
-            <p id="home_paragraph">No informatio are display</p>
 
-          </div>
+    <div id="sidebar"></div>
+
+    <main class="app-main">
+
+      <div class="page-box">
+
+        <div class="content-body main-container">
+
+          <section class="section">
+            <h1 id="home_title">Welcome</h1>
+
+            <div class="button-row">
+
+              <!-- <a href="#" class="icon-button"> -->
+              <a id="homeUrl_1" class="icon-button">
+                <span id="homeIcon_1" class="icon">🏠</span>
+                <span id="homeText_1" class="text">Home</span>
+              </a>
+
+              <a href="#" class="icon-button">
+                <span class="icon">📘</span>
+                <span class="text">Book</span>
+              </a>
+
+              <a href="#" class="icon-button">
+                <span class="icon">🧾</span>
+                <span class="text">VRS</span>
+              </a>
+
+            </div>
+            <p id="home_paragraph">No information is displayed</p>
+          </section>
+
+          <!-- Example cards -->
+          <!-- <section class="grid grid-3 section">
+
+            <div class="card">
+              <h2>Card 1</h2>
+              <p>Some content here</p>
+            </div>
+
+            <div class="card">
+              <h2>Card 2</h2>
+              <p>Some content here</p>
+            </div>
+
+            <div class="card">
+              <h2>Card 3</h2>
+              <p>Some content here</p>
+            </div>
+
+          </section> -->
+
+        </div>
+
+      </div>
+
     </main>
+
   </div>
 
   <div id="footer"></div>
@@ -41,4 +93,5 @@
   <script src="layout.js"></script>
   <script src="environment_variables.js"></script>
 </body>
+
 </html>
