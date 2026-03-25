@@ -44,7 +44,7 @@ body {
 /* Main area */
 .app-main {
   flex: 1;
-  padding: 24px 16px;
+  padding: 24px 16px 80px;
   background: #eef2f6;
 }
 
@@ -305,12 +305,11 @@ p {
    Footer
    ========================= */
 .app-footer {
-  border-top: 1px solid #e5e5e5;
-  padding: 14px 16px;
-  text-align: center;
-  background: #fff;
-  font-size: 0.95rem;
-  color: #6b7280;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1200;
 }
 
 /* =========================
