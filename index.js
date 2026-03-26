@@ -18,6 +18,9 @@ app.get("/api/message", (req, res) => {
     google_tag: process.env.GOOGLE_TAG || "",
     clarity_tag: process.env.CLARITY_TAG || "",
 
+    //head title
+     header_title: process.env.HOME_TITLE || "InSignLanguage",
+
     // Home page
     home_title: process.env.HOME_TITLE || "Welcome InSignLanguage",
     home_paragraph: process.env.HOME_PARAGRAPH || "",
@@ -31,12 +34,17 @@ homeButtons: [
   {
     url: process.env.HOME_BUTTON_URL_2 || "book.html",
     icon: process.env.HOME_BUTTON_ICON_2 || "📆",
-    text: process.env.HOME_BUTTON_TEXT_2 || "Booking VRS"
+    text: process.env.HOME_BUTTON_TEXT_2 || "Book VRS"
   },
   {
-    url: process.env.HOME_BUTTON_URL_3 || "vrs.html",
+    url: process.env.HOME_BUTTON_URL_3 || "join_call.html",
     icon: process.env.HOME_BUTTON_ICON_3 || "🎥",
-    text: process.env.HOME_BUTTON_TEXT_3 || "VRS"
+    text: process.env.HOME_BUTTON_TEXT_3 || "Join a call"
+  },
+  {
+    url: process.env.HOME_BUTTON_URL_4 || "start_call.html",
+    icon: process.env.HOME_BUTTON_ICON_4 || "🎥",
+    text: process.env.HOME_BUTTON_TEXT_4 || "Start a call"
   }
 ],
 

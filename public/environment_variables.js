@@ -46,6 +46,11 @@ fetch("/api/message")
         y.parentNode.insertBefore(t, y);
       })(window, document, "clarity", "script", data.clarity_tag);
     }
+    // Head title
+    const  headerTitle = document.getElementById("header_title");
+
+    if (headerTitle) headerTitle.innerText.document.getElementById("header_title");
+
 
     // Home content
     const homeTitle = document.getElementById("home_title");
@@ -87,6 +92,14 @@ fetch("/api/message")
         console.warn("No book_link provided");
       }
     }
+
+    // join call
+     const joinTitle = document.getElementById("join_title");
+      if (joinTitle) joinTitle.innerText = data.join_title || "website under maintenance";
+      
+      // start call
+     const startTitle = document.getElementById("start_title");
+      if (startTitle) startTitle.innerText = data.start_title || "website under maintenance";
 
   })
   .catch(err => {
