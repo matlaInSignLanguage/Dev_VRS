@@ -246,7 +246,7 @@ p {
 /* =========================
    Iframe
    ========================= */
-.section.book-section {
+.book-section {
   max-width: 600px;
   margin: 40px auto;
   padding: 0;     
