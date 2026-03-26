@@ -246,18 +246,34 @@ p {
 /* =========================
    Iframe
    ========================= */
+.section.book-section {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 12px;
+  height: 80vh;          
+  display: flex;
+  flex-direction: column;
+}
+
 .iframe-card {
   margin-top: 16px;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid #e5e7eb;
+  flex: 1;
+  display: flex;
 }
 
 .iframe-card iframe {
   width: 100%;
-  height: 60vh;
+  height: 100%;     
   border: none;
   display: block;
+}
+@media (max-width: 600px) {
+  .section.book-section {
+    height: 90vh;
+  }
 }
 
 /* =========================
