@@ -51,17 +51,19 @@ body {
 .page-box {
   max-width: 1200px;
   margin: 20px auto;
+  padding: 0;
+
   background: #ffffff;
   border: 1px solid #e6e8eb;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  padding: clamp(16px, 3vw, 24px);
   width: 100%;
 }
 
 .main-container {
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: none;  
+  margin: 0;
   width: 100%;
+  padding: 0;
 }
 
 .section {
@@ -140,7 +142,7 @@ p {
 }
 
 /* =========================
-   HEADER (FIXED NAVBAR)
+   HEADER
    ========================= */
 .app-header {
   position: sticky;
@@ -162,7 +164,6 @@ p {
   gap: 16px;
 }
 
-/* LEFT SIDE */
 .left-group {
   display: flex;
   align-items: center;
@@ -171,7 +172,6 @@ p {
   min-width: 0;
 }
 
-/* BRAND (LOGO + NAME) */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -190,10 +190,8 @@ p {
 .brand-name {
   font-weight: 700;
   font-size: clamp(1.1rem, 2.2vw, 1.4rem);
-  white-space: nowrap;
 }
 
-/* NAV LINKS */
 .top-nav {
   display: flex;
   align-items: center;
@@ -244,24 +242,26 @@ p {
 }
 
 /* =========================
-   Iframe
+   🔥 BOOK IFRAME (FIXED UX)
    ========================= */
 .book-section {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 0;     
-  height: 80vh;
+  width: 100%;
+  height: calc(100vh - 70px); /* adjust to header height */
+
+  margin: 0;
+  padding: 0;
+
   display: flex;
   flex-direction: column;
 }
 
 .iframe-card {
-  margin-top: 0;         
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid #e5e7eb;
   flex: 1;
   display: flex;
+
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
 }
 
 .iframe-card iframe {
@@ -269,11 +269,6 @@ p {
   height: 100%;
   border: none;
   display: block;
-}
-@media (max-width: 600px) {
-  .section.book-section {
-    height: 90vh;
-  }
 }
 
 /* =========================
@@ -294,12 +289,10 @@ p {
    ========================= */
 @media (max-width: 600px) {
 
-  /* Hide sidebar */
   #sidebar {
     display: none;
   }
 
-  /* Navbar adjustments */
   .header-inner {
     flex-wrap: wrap;
   }
@@ -310,12 +303,16 @@ p {
     gap: 10px;
   }
 
-  /* Prevent overlap with bottom nav if used */
   .app-main {
     padding-bottom: 80px;
   }
 
+  /* keep iframe full height */
+  .book-section {
+    height: calc(100vh - 60px);
+  }
+
   .iframe-card iframe {
-    height: 50vh;
+    height: 100%;
   }
 }
