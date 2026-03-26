@@ -19,7 +19,7 @@ app.get("/api/message", (req, res) => {
     clarity_tag: process.env.CLARITY_TAG || "",
 
     //head title
-     header_title: process.env.HOME_TITLE || "InSignLanguage",
+     header_title: process.env.HEADER_TITLE || "InSignLanguage",
 
     // Home page
     home_title: process.env.HOME_TITLE || "Welcome InSignLanguage",
