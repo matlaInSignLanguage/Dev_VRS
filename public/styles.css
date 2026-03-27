@@ -1,5 +1,5 @@
 /* =========================
-   Reset
+   RESET + GLOBAL FIXES
    ========================= */
 *,
 *::before,
@@ -9,24 +9,24 @@
 
 html, body {
   height: 100%;
-}
-
-body {
+  width: 100%;
   margin: 0;
+  overflow-x: hidden;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
                Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   color: #212529;
   background-color: #eef2f6;
+}
 
+body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 /* =========================
-   Layout Shell
+   LAYOUT SHELL
    ========================= */
 .app-shell {
   display: flex;
@@ -39,6 +39,24 @@ body {
   flex-shrink: 0;
 }
 
+/* Tablet fix */
+@media (max-width: 992px) {
+  #sidebar {
+    width: 200px;
+  }
+}
+
+/* Mobile: sidebar becomes hidden */
+@media (max-width: 768px) {
+  .app-shell {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    display: none;
+  }
+}
+
 /* Main area */
 .app-main {
   flex: 1;
@@ -46,24 +64,15 @@ body {
 }
 
 /* =========================
-   Containers
+   CONTAINERS
    ========================= */
 .page-box {
   max-width: 1200px;
   margin: 20px auto;
-  padding: 0;
-
-  background: #ffffff;
+  width: 100%;
+  background: #fff;
   border: 1px solid #e6e8eb;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  width: 100%;
-}
-
-.main-container {
-  max-width: none;  
-  margin: 0;
-  width: 100%;
-  padding: 0;
 }
 
 .section {
@@ -74,7 +83,7 @@ body {
 }
 
 /* =========================
-   Typography
+   TYPOGRAPHY
    ========================= */
 h1 {
   font-size: clamp(1.4rem, 3vw, 1.8rem);
@@ -85,7 +94,7 @@ p {
 }
 
 /* =========================
-   Buttons
+   BUTTONS
    ========================= */
 .button-row {
   display: flex;
@@ -97,12 +106,14 @@ p {
 .icon-button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 
   padding: 10px 14px;
-  border-radius: 10px;
+  min-width: 120px;
 
-  background: #ffffff;
+  border-radius: 10px;
+  background: #fff;
   border: 1px solid #e6e8eb;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 
@@ -117,8 +128,14 @@ p {
   transform: translateY(-2px);
 }
 
+.icon-button:focus,
+.nav-item:focus {
+  outline: 2px solid #111827;
+  outline-offset: 2px;
+}
+
 /* =========================
-   Grid
+   GRID (AUTO RESPONSIVE FIX)
    ========================= */
 .grid {
   display: grid;
@@ -126,19 +143,7 @@ p {
 }
 
 .grid-3 {
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 600px) {
-  .grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 /* =========================
@@ -192,12 +197,14 @@ p {
   font-size: clamp(1.1rem, 2.2vw, 1.4rem);
 }
 
+/* NAV */
 .top-nav {
   display: flex;
   align-items: center;
   gap: 14px;
-  flex-shrink: 0;
   white-space: nowrap;
+  flex-shrink: 0;
+  z-index: 1001;
 }
 
 .nav-item {
@@ -210,6 +217,7 @@ p {
   text-decoration: underline;
 }
 
+/* MOBILE MENU BUTTON */
 .menu-toggle {
   display: none;
   font-size: 26px;
@@ -218,31 +226,34 @@ p {
   cursor: pointer;
 }
 
+/* NAV RESPONSIVE */
 @media (max-width: 768px) {
 
   .menu-toggle {
     display: block;
   }
 
+  .header-inner {
+    position: relative;
+  }
+
   .top-nav {
     display: none;
     position: absolute;
     top: 100%;
-    right: 0;
     left: 0;
-    background: #FBB000;
+    right: 0;
+
     flex-direction: column;
-    padding: 12px;
     gap: 10px;
+
+    padding: 12px;
+    background: #FBB000;
     border-top: 1px solid #e5e5e5;
   }
 
   .top-nav.open {
     display: flex;
-  }
-
-  .header-inner {
-    position: relative;
   }
 
   .nav-item {
@@ -251,7 +262,7 @@ p {
 }
 
 /* =========================
-   Cards
+   CARDS
    ========================= */
 .card {
   background: #fff;
@@ -262,7 +273,7 @@ p {
 }
 
 /* =========================
-   VRS Section
+   VRS SECTION
    ========================= */
 .vrs-container {
   max-width: 900px;
@@ -274,7 +285,7 @@ p {
 }
 
 .vrs-card {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   padding: 20px;
@@ -282,23 +293,25 @@ p {
 }
 
 /* =========================
-   🔥 BOOK IFRAME (FIXED UX)
+   BOOK IFRAME FIX (MOBILE SAFE)
    ========================= */
 .book-section {
   width: 100%;
-  height: calc(100vh - 70px); /* adjust to header height */
-
-  margin: 0;
-  padding: 0;
+  height: calc(100dvh - 70px);
 
   display: flex;
   flex-direction: column;
 }
 
+@media (max-width: 600px) {
+  .book-section {
+    height: calc(100dvh - 60px);
+  }
+}
+
 .iframe-card {
   flex: 1;
   display: flex;
-
   border: none;
   border-radius: 0;
   overflow: hidden;
@@ -309,10 +322,11 @@ p {
   height: 100%;
   border: none;
   display: block;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* =========================
-   Footer
+   FOOTER
    ========================= */
 .app-footer {
   width: 100%;
@@ -329,30 +343,12 @@ p {
    ========================= */
 @media (max-width: 600px) {
 
-  #sidebar {
-    display: none;
-  }
-
-  .header-inner {
-    flex-wrap: wrap;
+  .app-main {
+    padding: 12px;
+    padding-bottom: 80px;
   }
 
   .top-nav {
     flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 10px;
-  }
-
-  .app-main {
-    padding-bottom: 80px;
-  }
-
-  /* keep iframe full height */
-  .book-section {
-    height: calc(100vh - 60px);
-  }
-
-  .iframe-card iframe {
-    height: 100%;
   }
 }
