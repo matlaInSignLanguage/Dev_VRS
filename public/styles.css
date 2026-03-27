@@ -291,6 +291,12 @@ p {
   padding: 20px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.05);
 }
+.vrs-card a {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  hyphens: auto;
+}
 
 /* =========================
    BOOK IFRAME FIX (MOBILE SAFE)
