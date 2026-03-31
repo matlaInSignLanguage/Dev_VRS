@@ -6,10 +6,10 @@ function loadLayout() {
       <span id="header_title" class="brand-name">InSignLanguage</span>
 
       <nav class="top-nav" id="topNav">
-        <a class="nav-item" href="index.html">Home</a>
-        <a class="nav-item" href="book.html">Book VRS</a>
-        <a class="nav-item" href="join_call.html">Join a call</a>
-        <a class="nav-item" href="start_call.html">Start a call</a>
+        <a class="nav-item" href="index.html">Options</a>
+        <a class="nav-item" href="book.html">Book</a>
+        <a class="nav-item" href="join.html">Join</a>
+        <a class="nav-item" href="start.html">Start</a>
       </nav>
     </div>
 
