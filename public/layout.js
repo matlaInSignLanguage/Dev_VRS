@@ -3,7 +3,7 @@ function loadLayout() {
 <header class="app-header">
   <div class="header-inner">
     <div class="left-group">
-      <h1 id="header_title" class="brand-name">InSignLanguage</h1>
+    <h1 id="header_title" class="brand-name">InSignLanguage</h1>
 
       <nav class="top-nav" id="topNav">
         <a class="nav-item" href="index.html">Options</a>
