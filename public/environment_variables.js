@@ -30,9 +30,21 @@ fetch("/api/message")
     const desc = document.getElementById("seo_description");
     const key = document.getElementById("seo_keyword");
 
-    if (desc) desc.setAttribute("content", data.seo_description || "");
-    if (key) key.setAttribute("content", data.seo_keyword || "");
+    const seoDesc =
+      data?.seo_description ||
+      "Book video relay service appointments with InSignLanguage. Fast and accessible online scheduling.";
 
+    const seoKey =
+      data?.seo_keyword ||
+      "video relay service, VRS, sign language interpreter, BSL, online booking, accessibility";
+
+    if (desc) {
+      desc.setAttribute("content", seoDesc);
+    }
+
+    if (key) {
+      key.setAttribute("content", seoKey);
+    }
     // -------------------------
     // Google Tag Manager
     // -------------------------
