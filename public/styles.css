@@ -33,30 +33,6 @@ body {
   flex: 1;
 }
 
-/* Sidebar */
-#sidebar {
-  width: 240px;
-  flex-shrink: 0;
-}
-
-/* Tablet fix */
-@media (max-width: 992px) {
-  #sidebar {
-    width: 200px;
-  }
-}
-
-/* Mobile: sidebar becomes hidden */
-@media (max-width: 768px) {
-  .app-shell {
-    flex-direction: column;
-  }
-
-  #sidebar {
-    display: none;
-  }
-}
-
 /* Main area */
 .app-main {
   flex: 1;
