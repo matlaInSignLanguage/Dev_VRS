@@ -86,6 +86,7 @@ fetch("/api/message")
 
     setText("home_title", data.home_title);
     setHTML("home_paragraph", data.home_paragraph);
+    setHTML("home_policy", data.home_policy);
 
     setText("join_title", data.join_title, "website under maintenance");
     setText("start_title", data.start_title, "website under maintenance");
