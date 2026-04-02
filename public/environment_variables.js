@@ -103,6 +103,7 @@ fetch("/api/message")
         const el = document.createElement("a");
         el.className = "icon-button";
         el.href = btn.url || "#";
+        el.ariaLabel = btn.text || "button_link";
         el.innerHTML = `
           <span class="icon">${btn.icon || ""}</span>
           <span class="text">${btn.text || ""}</span>
