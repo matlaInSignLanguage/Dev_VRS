@@ -1,9 +1,9 @@
 function loadLayout() {
   document.getElementById("header").innerHTML = `
 <header class="app-header">
-  <div class="header-inner">
+  <div class="header-inner"> 
     <div class="left-group">
-    <span id="header_title" class="brand-name">InSignLanguage</span>
+    <span id="header_title" class="brand-name">VRS</span>
 
       <nav class="top-nav" id="topNav">
         <a class="nav-item" href="index.html">Options</a>
