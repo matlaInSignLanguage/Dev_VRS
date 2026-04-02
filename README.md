@@ -104,8 +104,8 @@ if (book_paragraph) {
 
 ## Example Mapping
 
-| Azure Variable | Backend Key | HTML ID |
-|---------------|------------|---------|
+| Azure Variable | Backend Key    |   HTML ID      |
+|----------------|----------------|----------------|
 | BOOK_PARAGRAPH | book_paragraph | book_paragraph |
 
 ---
