@@ -5,13 +5,12 @@ function loadLayout() {
     <div class="left-group">
     <span id="header_title" class="brand-name">VRS</span>
 
-      <nav class="top-nav" id="topNav">
-        <a class="nav-item" href="index.html">Options</a>
-        <a class="nav-item" href="book.html">Book</a>
-        <a class="nav-item" href="join.html">Join</a>
-        <a class="nav-item" href="start.html">Start</a>
-      </nav>
-    </div>
+    <nav class="top-nav" id="topNav">
+  <a class="nav-item" href="/home">Options</a>
+  <a class="nav-item" href="/book">Book</a>
+  <a class="nav-item" href="/join">Join</a>
+  <a class="nav-item" href="/start">Start</a>
+</nav>
 
     <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
       ☰
