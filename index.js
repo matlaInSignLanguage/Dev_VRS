@@ -18,36 +18,37 @@ app.get("/api/message", (req, res) => {
     google_tag: process.env.GOOGLE_TAG || "",
     clarity_tag: process.env.CLARITY_TAG || "",
 
-    //head title
-     header_title: process.env.HEADER_TITLE || "InSignLanguage",
+    // head title
+    header_title: process.env.HEADER_TITLE || "InSignLanguage",
 
     // Home page
     home_title: process.env.HOME_TITLE || "Welcome InSignLanguage",
     home_paragraph: process.env.HOME_PARAGRAPH || "",
     home_policy: process.env.HOME_POLICY || "",
-    // Buttion
-homeButtons: [
-  {
-    url: process.env.HOME_BUTTON_URL_1 || "index.html",
-    icon: process.env.HOME_BUTTON_ICON_1 || "🏠",
-    text: process.env.HOME_BUTTON_TEXT_1 || "Home"
-  },
-  {
-    url: process.env.HOME_BUTTON_URL_2 || "book.html",
-    icon: process.env.HOME_BUTTON_ICON_2 || "📆",
-    text: process.env.HOME_BUTTON_TEXT_2 || "Book VRS"
-  },
-  {
-    url: process.env.HOME_BUTTON_URL_3 || "join_call.html",
-    icon: process.env.HOME_BUTTON_ICON_3 || "🎥",
-    text: process.env.HOME_BUTTON_TEXT_3 || "Join a call"
-  },
-  {
-    url: process.env.HOME_BUTTON_URL_4 || "start_call.html",
-    icon: process.env.HOME_BUTTON_ICON_4 || "🎥",
-    text: process.env.HOME_BUTTON_TEXT_4 || "Start a call"
-  }
-],
+
+    // Buttons (CLEAN URLS)
+    homeButtons: [
+      {
+        url: "/home",
+        icon: process.env.HOME_BUTTON_ICON_1 || "🏠",
+        text: process.env.HOME_BUTTON_TEXT_1 || "Home"
+      },
+      {
+        url: "/book",
+        icon: process.env.HOME_BUTTON_ICON_2 || "📆",
+        text: process.env.HOME_BUTTON_TEXT_2 || "Book VRS"
+      },
+      {
+        url: "/join",
+        icon: process.env.HOME_BUTTON_ICON_3 || "🎥",
+        text: process.env.HOME_BUTTON_TEXT_3 || "Join a call"
+      },
+      {
+        url: "/start",
+        icon: process.env.HOME_BUTTON_ICON_4 || "🎥",
+        text: process.env.HOME_BUTTON_TEXT_4 || "Start a call"
+      }
+    ],
 
     // Book page
     book_title: process.env.BOOK_TITLE || "Book Appointment",
@@ -58,6 +59,35 @@ homeButtons: [
   });
 });
 
+
+// ===============================
+// CLEAN URL ROUTES (NO .HTML)
+// ===============================
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.get("/book", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "book.html"));
+});
+
+app.get("/join", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "join.html"));
+});
+
+app.get("/start", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "start.html"));
+});
+
+
+// ===============================
+// START SERVER
+// ===============================
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
   console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
