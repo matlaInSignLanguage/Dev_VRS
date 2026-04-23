@@ -89,28 +89,6 @@ fetch("/api/message")
     setHTML("home_policy", data.home_policy);
 
     // -------------------------
-    // JOIN Section
-    // -------------------------  
-       setText("join_title", data.join_title, "website under maintenance");
-
-       const iframe = document.getElementById("join_link");
-    if (iframe) {
-      iframe.src = data.join_link || "about:blank";
-      if (!data.join_link) console.warn("No join_link provided");
-    }
-
-    // -------------------------
-    // Start Section
-    // -------------------------  
-      setText("start_title", data.start_title, "website under maintenance");
-
-       const iframe = document.getElementById("start_link");
-    if (iframe) {
-      iframe.src = data.start_link || "about:blank";
-      if (!data.start_link) console.warn("No start_link provided");
-    }
-
-    // -------------------------
     // Home Buttons (dynamic)
     // -------------------------
     const container = document.getElementById("homeButtons");
