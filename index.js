@@ -54,6 +54,14 @@ app.get("/api/message", (req, res) => {
     book_title: process.env.BOOK_TITLE || "Book Appointment",
     book_link: process.env.BOOK_LINK || "",
 
+    // Join page
+    join_title: process.env.JOIN_TITLE || "Join a Call",
+    join_link: process.env.JOIN_LINK || "",
+
+    // Start page
+    start_title: process.env.START_TITLE || "Start a Call",
+    start_link: process.env.START_LINK || "",
+
     // Environment
     environment: process.env.NODE_ENV || "development"
   });
