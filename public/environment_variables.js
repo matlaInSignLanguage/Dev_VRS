@@ -1,5 +1,5 @@
 // =========================
-// Fetch API Data & Populate Page
+// Fetch API Data & Populate Pages
 // =========================
 fetch("/api/message")
   .then(async res => {
