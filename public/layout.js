@@ -8,8 +8,6 @@ function loadLayout() {
     <nav class="top-nav" id="topNav">
   <a class="nav-item" href="/home">Options</a>
   <a class="nav-item" href="/book">Book</a>
-  <a class="nav-item" href="/join">Join</a>
-  <a class="nav-item" href="/start">Start</a>
 </nav>
 
     <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
